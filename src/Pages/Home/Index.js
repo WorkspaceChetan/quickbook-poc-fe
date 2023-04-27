@@ -2,27 +2,42 @@ import React, { useState, useEffect } from "react";
 import MainMenu from "../../Navbar/MainMenu";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import TokenServices from "../../ApiServises/TokenService";
 
 export default function MainHome() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+
+  const refreshToken = async () => {
+    const tokenid = localStorage.getItem("tokenid");
+    if (tokenid && tokenid.length > 0) {
+      const resp = await TokenServices.RefreshToken(tokenid);
+      const token = resp.data.token;
+      localStorage.setItem("tokenid", token);
+    }
+  };
 
   const handleLogin = () => {
-    localStorage.setItem("isLoggedIn", true);
-    navigate("/account");
-    setIsLoggedIn(true);
+    window.location.replace("http://localhost:5000/qb/authUri");
   };
 
   const handleLogout = () => {
-    localStorage.setItem("isLoggedIn", false);
-    setIsLoggedIn(false);
+    localStorage.removeItem("tokenid");
+    window.location.replace("http://localhost:3000");
   };
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    setIsLoggedIn(loggedIn);
+    const tokenid = searchParams.get("tokenid");
+    if (tokenid) {
+      localStorage.setItem("tokenid", tokenid);
+      window.location.replace("http://localhost:3000");
+    } else {
+      const tokenid = localStorage.getItem("tokenid");
+      if (tokenid && tokenid.length > 0) setIsLoggedIn(true);
+    }
   }, []);
+
   return (
     <div>
       <MainMenu />
@@ -52,7 +67,11 @@ export default function MainHome() {
                       justifyContent: " center",
                     }}
                   >
-                    <Button variant="primary" className="mb-2">
+                    <Button
+                      onClick={refreshToken}
+                      variant="primary"
+                      className="mb-2"
+                    >
                       <Link style={{ color: "white", textDecoration: " none" }}>
                         Refresh
                       </Link>

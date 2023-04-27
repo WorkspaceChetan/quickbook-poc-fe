@@ -1,10 +1,23 @@
-import { Fragment } from "react";
+import { Fragment, useCallback } from "react";
 import { Button } from "react-bootstrap";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import TokenServices from "./../../ApiServises/TokenService";
+import { toast } from "react-toastify";
 
 export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
   const displayName = JSON.parse(prod.content).DisplayName;
   const companyName = JSON.parse(prod.content).CompanyName;
+  const { id } = prod;
+
+  const syncCb = useCallback(async () => {
+    const tokenid = localStorage.getItem("tokenid");
+    const resp = await TokenServices.sync("vendor", id, tokenid);
+    if (!resp.data.isError) {
+      toast.success("Data  Synced Successfully", { autoClose: 3000 });
+    } else {
+      toast.error(resp.data.message, { autoClose: 3000 });
+    }
+  }, [id]);
 
   return (
     <tr>
@@ -30,7 +43,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
         </Button>
       </td>
       <td>
-        <Button>Sync</Button>
+        <Button onClick={syncCb}>Sync</Button>
       </td>
     </tr>
   );
