@@ -24,6 +24,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {displayName} </td>
       <td> {companyName} </td>
+      <td></td>
       <td>
         <Button
           variant="primary"

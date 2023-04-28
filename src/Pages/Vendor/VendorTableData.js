@@ -87,6 +87,7 @@ function VendorTableData() {
             <th>No</th>
             <th>Vendor Name</th>
             <th> Company Name </th>
+            <th>Sync</th>
             <th>Edit</th>
             <th>Delete</th>
             <th>Sync</th>

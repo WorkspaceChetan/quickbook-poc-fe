@@ -4,7 +4,6 @@ import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import TokenServices from "./../../ApiServises/TokenService";
 import { toast } from "react-toastify";
 
-
 export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
   const accountName = JSON.parse(prod.content).Name;
   const accountType = JSON.parse(prod.content).AccountType;
@@ -13,10 +12,10 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
   const syncCb = useCallback(async () => {
     const tokenid = localStorage.getItem("tokenid");
     const resp = await TokenServices.sync("account", id, tokenid);
-    if(!resp.data.isError) {
+    if (!resp.data.isError) {
       toast.success("Data  Synced Successfully", { autoClose: 3000 });
     } else {
-      toast.error(resp.data.message, { autoClose: 3000 }); 
+      toast.error(resp.data.message, { autoClose: 3000 });
     }
     console.log(resp.data);
   }, [id]);
@@ -26,6 +25,7 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {accountName} </td>
       <td> {accountType} </td>
+      <td>{}</td>
       <td>
         <Button
           variant="primary"
