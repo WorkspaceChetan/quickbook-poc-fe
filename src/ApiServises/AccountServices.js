@@ -13,7 +13,7 @@ class AccountServices {
 
   static add = async (data) => {
     const url = "http://localhost:5000/api/account";
-    console.log("addAccount", data);
+    // console.log("addAccount", data);
     const config = {
       headers: {
         "content-type": "application/json",
@@ -24,7 +24,7 @@ class AccountServices {
 
   static update = async (data) => {
     const url = "http://localhost:5000/api/account/" + data.id;
-    console.log("UpdateAccount", data);
+    // console.log("UpdateAccount", data);
     const config = {
       headers: {
         "content-type": "application/json",

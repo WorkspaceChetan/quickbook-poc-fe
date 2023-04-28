@@ -14,11 +14,11 @@ function AccounttModal(props) {
         const id = props.product.id;
         const resp = await AccountServices.getById(id);
         const content = resp.data.data.content;
-        console.log("getId", content);
+        // console.log("getId", content);
         const AcData = JSON.parse(content);
         setName(AcData.Name);
         setAccountType(AcData.AccountType);
-        console.log("AcData", AcData);
+        // console.log("AcData", AcData);
       }
     }
     if (props.open) getById();

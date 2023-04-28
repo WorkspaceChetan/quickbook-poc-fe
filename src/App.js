@@ -6,6 +6,8 @@ import AccountType from "./Pages/AccountType";
 import VendorType from "./Pages/VendorType";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "./component/ProtectedRoute";
+import UnauthorizedRoute from "./component/UnauthorizedRoute";
 // import { SimpleData } from "./simpleData";
 
 function App() {
@@ -14,12 +16,33 @@ function App() {
       <ToastContainer />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/account" element={<AccountType />} />
-          <Route path="/vendor" element={<VendorType />} />
+          <Route
+            path="/"
+            element={
+              <UnauthorizedRoute>
+                <Home />
+              </UnauthorizedRoute>
+            }
+          />
+
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <AccountType />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vendor"
+            element={
+              <ProtectedRoute>
+                <VendorType />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
-      {/* <SimpleData /> */}
     </div>
   );
 }

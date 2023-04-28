@@ -10,9 +10,9 @@ class TokenServices {
   static sync = async (tblname, id, tokenid) => {
     const url = `http://localhost:5000/qb/sync?tbl=${tblname}&id=${id}`;
     const config = {
-      headers : {
-        "authorization" : tokenid
-      }
+      headers: {
+        authorization: tokenid,
+      },
     };
     return await axios.get(url, config);
   };

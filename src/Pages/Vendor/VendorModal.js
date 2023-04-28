@@ -14,11 +14,11 @@ function VendortModal(props) {
         const id = props.product.id;
         const resp = await VendorServices.getById(id);
         const content = resp.data.data.content;
-        console.log("getId", content);
+        // console.log("getId", content);
         const AcData = JSON.parse(content);
         setDisplayName(AcData.DisplayName);
         setCompanyName(AcData.CompanyName);
-        console.log("AcData", AcData);
+        // console.log("AcData", AcData);
       }
     }
     if (props.open) getById();

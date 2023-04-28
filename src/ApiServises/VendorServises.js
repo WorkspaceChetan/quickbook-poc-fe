@@ -13,7 +13,7 @@ class VendorServices {
 
   static add = async (data) => {
     const url = "http://localhost:5000/api/vendor";
-    console.log("addAccount", data);
+    // console.log("addAccount", data);
     const config = {
       headers: {
         "content-type": "application/json",
@@ -24,7 +24,7 @@ class VendorServices {
 
   static update = async (data) => {
     const url = "http://localhost:5000/api/vendor/" + data.id;
-    console.log("UpdateVendor", data);
+    // console.log("UpdateVendor", data);
     const config = {
       headers: {
         "content-type": "application/json",
