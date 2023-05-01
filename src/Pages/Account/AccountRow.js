@@ -27,6 +27,8 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {accountName} </td>
       <td> {accountType} </td>
+      <td></td>
+      <td></td>
       <td>
         <pre className="max-pre">{qbData}</pre>
       </td>
