@@ -102,6 +102,7 @@ function AccountTableData() {
             data={product}
             handleOpen={handleOpen}
             deleteusr={deleteusr}
+            fetchdata={fetchdata}
           />
         </tbody>
       </Table>

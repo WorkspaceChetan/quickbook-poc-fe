@@ -4,7 +4,7 @@ import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import TokenServices from "./../../ApiServises/TokenService";
 import { toast } from "react-toastify";
 
-export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
+export const VendortTableRow = ({ prod, handleOpen, deleteusr, fetchdata }) => {
   const content = JSON.parse(prod.content);
   const displayName = content.DisplayName;
   const companyName = content.CompanyName;
@@ -15,7 +15,8 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
     const tokenid = localStorage.getItem("tokenid");
     const resp = await TokenServices.sync("vendor", id, tokenid);
     if (!resp.data.isError) {
-      toast.success("Data  Synced Successfully", { autoClose: 3000 });
+      toast.success("Data Synced Successfully", { autoClose: 3000 });
+      fetchdata();
     } else {
       toast.error(resp.data.message, { autoClose: 3000 });
     }
@@ -54,7 +55,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
   );
 };
 
-const VendorTableRows = ({ data, handleOpen, deleteusr }) => {
+const VendorTableRows = ({ data, handleOpen, deleteusr, fetchdata }) => {
   return (
     <>
       {data &&
@@ -65,6 +66,7 @@ const VendorTableRows = ({ data, handleOpen, deleteusr }) => {
               prod={prod}
               handleOpen={handleOpen}
               deleteusr={deleteusr}
+              fetchdata={fetchdata}
             />
           </Fragment>
         ))}

@@ -4,10 +4,12 @@ import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import TokenServices from "./../../ApiServises/TokenService";
 import { toast } from "react-toastify";
 
-export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
+export const AccountTableRow = ({ prod, handleOpen, deleteusr, fetchdata }) => {
   const content = JSON.parse(prod.content);
   const accountName = content.Name;
   const accountType = content.AccountType;
+  const Description = content.Description;
+  const AccountAlias = content.AccountAlias;
   const qbData = prod.qb_data;
   const { id } = prod;
 
@@ -16,6 +18,7 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
     const resp = await TokenServices.sync("account", id, tokenid);
     if (!resp.data.isError) {
       toast.success("Data  Synced Successfully", { autoClose: 3000 });
+      fetchdata();
     } else {
       toast.error(resp.data.message, { autoClose: 3000 });
     }
@@ -27,8 +30,8 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {accountName} </td>
       <td> {accountType} </td>
-      <td></td>
-      <td></td>
+      <td>{Description}</td>
+      <td>{AccountAlias}</td>
       <td>
         <pre className="max-pre">{qbData}</pre>
       </td>
@@ -57,7 +60,8 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
   );
 };
 
-const AccountTableRows = ({ data, handleOpen, deleteusr }) => {
+const AccountTableRows = ({ data, handleOpen, deleteusr, fetchdata }) => {
+  console.log("fetchData", fetchdata);
   return (
     <>
       {data &&
@@ -68,6 +72,7 @@ const AccountTableRows = ({ data, handleOpen, deleteusr }) => {
               prod={prod}
               handleOpen={handleOpen}
               deleteusr={deleteusr}
+              fetchdata={fetchdata}
             />
           </Fragment>
         ))}
