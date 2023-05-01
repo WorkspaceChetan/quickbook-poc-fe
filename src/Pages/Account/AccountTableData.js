@@ -89,6 +89,8 @@ function AccountTableData() {
             <th>No</th>
             <th>Account Name</th>
             <th>Account Type </th>
+            <th>Description</th>
+            <th> AccountAlias</th>
             <th>Sync</th>
             <th>Edit</th>
             <th>Delete</th>

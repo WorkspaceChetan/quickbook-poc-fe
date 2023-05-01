@@ -8,6 +8,8 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
   const content = JSON.parse(prod.content);
   const displayName = content.DisplayName;
   const companyName = content.CompanyName;
+  const familyName = content.FamilyName;
+  const printOncheckName = content.PrintOnCheckName;
   const qbData = prod.qb_data;
   const { id } = prod;
 
@@ -26,6 +28,8 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {displayName} </td>
       <td> {companyName} </td>
+      <td>{familyName}</td>
+      <td>{printOncheckName}</td>
       <td>
         <pre className="max-pre">{qbData}</pre>
       </td>

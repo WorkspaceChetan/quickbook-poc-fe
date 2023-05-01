@@ -7,6 +7,8 @@ function VendortModal(props) {
   const isEdit = Boolean(props.product);
   const [DisplayName, setDisplayName] = useState("");
   const [CompanyName, setCompanyName] = useState("");
+  const [FamilyName, setFamilyName] = useState("");
+  const [PrintOnCheckName, setPrintOnCheckName] = useState("");
 
   useEffect(() => {
     async function getById() {
@@ -18,6 +20,8 @@ function VendortModal(props) {
         const AcData = JSON.parse(content);
         setDisplayName(AcData.DisplayName);
         setCompanyName(AcData.CompanyName);
+        setFamilyName(AcData.FamilyName);
+        setPrintOnCheckName(AcData.PrintOnCheckName);
         // console.log("AcData", AcData);
       }
     }
@@ -28,15 +32,19 @@ function VendortModal(props) {
     if (props.product) {
       setDisplayName(props.product.DisplayName);
       setCompanyName(props.product.CompanyName);
+      setFamilyName(props.FamilyName);
+      setPrintOnCheckName(props.PrintOnCheckName);
     } else {
       setDisplayName("");
       setCompanyName("");
+      setFamilyName("");
+      setPrintOnCheckName("");
     }
   }, [props.product]);
 
   const handleUpdate = async (e) => {
     const id = props.product.id;
-    const data = { DisplayName, CompanyName };
+    const data = { DisplayName, CompanyName, FamilyName, PrintOnCheckName };
     const response = await VendorServices.update({
       content: JSON.stringify(data),
       id,
@@ -52,7 +60,13 @@ function VendortModal(props) {
   };
 
   const handleAdd = async (e) => {
-    const data = { ...props.product, DisplayName, CompanyName };
+    const data = {
+      ...props.product,
+      DisplayName,
+      CompanyName,
+      FamilyName,
+      PrintOnCheckName,
+    };
     const response = await VendorServices.add({
       content: JSON.stringify(data),
     });
@@ -96,6 +110,24 @@ function VendortModal(props) {
             placeholder="Enter Company Name"
             value={CompanyName}
             onChange={(e) => setCompanyName(e.target.value)}
+            required
+          />
+          <br />
+          <Form.Control
+            type="text"
+            name="FamilyName"
+            placeholder="Enter Family Name"
+            value={FamilyName}
+            onChange={(e) => setFamilyName(e.target.value)}
+            required
+          />
+          <br />
+          <Form.Control
+            type="text"
+            name="PrintOnCheckName"
+            placeholder="Enter Print On Check Name"
+            value={PrintOnCheckName}
+            onChange={(e) => setPrintOnCheckName(e.target.value)}
             required
           />
         </Modal.Body>

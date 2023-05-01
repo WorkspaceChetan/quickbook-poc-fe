@@ -8,6 +8,8 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
   const content = JSON.parse(prod.content);
   const accountName = content.Name;
   const accountType = content.AccountType;
+  const Description = content.Description;
+  const AccountAlias = content.AccountAlias;
   const qbData = prod.qb_data;
   const { id } = prod;
 
@@ -27,6 +29,8 @@ export const AccountTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {accountName} </td>
       <td> {accountType} </td>
+      <td>{Description}</td>
+      <td>{AccountAlias}</td>
       <td>
         <pre className="max-pre">{qbData}</pre>
       </td>
