@@ -100,6 +100,7 @@ function VendorTableData() {
             data={product}
             handleOpen={handleOpen}
             deleteusr={deleteusr}
+            fetchData={fetchdata}
           />
         </tbody>
       </Table>

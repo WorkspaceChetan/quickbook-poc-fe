@@ -10,8 +10,6 @@ function AccountTableData() {
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // const [deluser, SetDelUser] = useState([]);
-
   const handleOpen = useCallback((data) => {
     setOpen(true);
     if (data) setSelectedProduct(data);
@@ -102,6 +100,7 @@ function AccountTableData() {
             data={product}
             handleOpen={handleOpen}
             deleteusr={deleteusr}
+            fetchdata={fetchdata}
           />
         </tbody>
       </Table>
