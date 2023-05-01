@@ -5,8 +5,10 @@ import TokenServices from "./../../ApiServises/TokenService";
 import { toast } from "react-toastify";
 
 export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
-  const displayName = JSON.parse(prod.content).DisplayName;
-  const companyName = JSON.parse(prod.content).CompanyName;
+  const content = JSON.parse(prod.content);
+  const displayName = content.DisplayName;
+  const companyName = content.CompanyName;
+  const qbData = prod.qb_data;
   const { id } = prod;
 
   const syncCb = useCallback(async () => {
@@ -24,7 +26,9 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {displayName} </td>
       <td> {companyName} </td>
-      <td></td>
+      <td>
+        <pre className="max-pre">{qbData}</pre>
+      </td>
       <td>
         <Button
           variant="primary"

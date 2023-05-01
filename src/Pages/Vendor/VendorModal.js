@@ -87,6 +87,7 @@ function VendortModal(props) {
             value={DisplayName}
             onChange={(e) => setDisplayName(e.target.value)}
             required
+            disabled={isEdit}
           />
           <br />
           <Form.Control

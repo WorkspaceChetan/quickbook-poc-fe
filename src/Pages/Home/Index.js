@@ -3,20 +3,20 @@ import MainMenu from "../../Navbar/MainMenu";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link, useSearchParams } from "react-router-dom";
-import TokenServices from "../../ApiServises/TokenService";
+// import TokenServices from "../../ApiServises/TokenService";
 
 export default function MainHome() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let [searchParams] = useSearchParams();
 
-  const refreshToken = async () => {
-    const tokenid = localStorage.getItem("tokenid");
-    if (tokenid && tokenid.length > 0) {
-      const resp = await TokenServices.RefreshToken(tokenid);
-      const token = resp.data.token;
-      localStorage.setItem("tokenid", token);
-    }
-  };
+  // const refreshToken = async () => {
+  //   const tokenid = localStorage.getItem("tokenid");
+  //   if (tokenid && tokenid.length > 0) {
+  //     const resp = await TokenServices.RefreshToken(tokenid);
+  //     const token = resp.data.token;
+  //     localStorage.setItem("tokenid", token);
+  //   }
+  // };
 
   const handleLogin = () => {
     window.location.replace("http://localhost:5000/qb/authUri");
@@ -47,7 +47,7 @@ export default function MainHome() {
           <Col xs={12} md={6} className="mb-4">
             <Card style={{ width: "18rem" }}>
               <Card.Header>
-                {isLoggedIn ? "Logged In" : "Not Logged In"}
+                {`Quick book auth`}
               </Card.Header>
               <Card.Body
                 style={{
@@ -67,7 +67,7 @@ export default function MainHome() {
                       justifyContent: " center",
                     }}
                   >
-                    <Button
+                    {/* <Button
                       onClick={refreshToken}
                       variant="primary"
                       className="mb-2"
@@ -75,21 +75,21 @@ export default function MainHome() {
                       <Link style={{ color: "white", textDecoration: " none" }}>
                         Refresh
                       </Link>
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="primary"
                       className="mb-2"
                       onClick={handleLogout}
                     >
                       <Link style={{ color: "white", textDecoration: " none" }}>
-                        Logout
+                        Revoke Access to Quick Book
                       </Link>
                     </Button>
                   </div>
                 ) : (
                   <Button variant="primary" onClick={handleLogin}>
                     <Link style={{ color: "white", textDecoration: " none" }}>
-                      Login
+                      Authorize Quick Books
                     </Link>
                   </Button>
                 )}

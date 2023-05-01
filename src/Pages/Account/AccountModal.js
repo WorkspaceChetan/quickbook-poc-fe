@@ -88,6 +88,7 @@ function AccounttModal(props) {
             value={Name}
             onChange={(e) => setName(e.target.value)}
             required
+            disabled={isEdit}
           />
           <br />
           <Form.Control
