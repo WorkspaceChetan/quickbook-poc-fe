@@ -2,7 +2,7 @@ import axios from "axios";
 
 class VendorServices {
   static getAll = async () => {
-    const url = "http://localhost:5000/api/vendor";
+    const url = `${process.env.REACT_APP_BE_URL}/api/vendor`;
     const config = {
       headers: {
         "content-type": "application/json",
@@ -12,7 +12,7 @@ class VendorServices {
   };
 
   static add = async (data) => {
-    const url = "http://localhost:5000/api/vendor";
+    const url = `${process.env.REACT_APP_BE_URL}/api/vendor`;
     // console.log("addAccount", data);
     const config = {
       headers: {
@@ -23,7 +23,7 @@ class VendorServices {
   };
 
   static update = async (data) => {
-    const url = "http://localhost:5000/api/vendor/" + data.id;
+    const url =  `${process.env.REACT_APP_BE_URL}/api/vendor/${data.id}`;
     // console.log("UpdateVendor", data);
     const config = {
       headers: {
@@ -35,7 +35,7 @@ class VendorServices {
   };
 
   static getById = async (id) => {
-    const url = `http://localhost:5000/api/vendor/${id}`;
+    const url = `${process.env.REACT_APP_BE_URL}/api/vendor/${id}`;
     const config = {
       headers: {
         "content-type": "application/json",
@@ -46,7 +46,7 @@ class VendorServices {
   };
 
   static delete = async (id) => {
-    const url = "http://localhost:5000/api/vendor/" + id;
+    const url = `${process.env.REACT_APP_BE_URL}/api/vendor/${id}`;
     const config = {
       headers: {
         "content-type": "application/json",

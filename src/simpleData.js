@@ -7,7 +7,7 @@ export const SimpleData = () => {
     // Fetch data from API
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/account");
+        const response = await fetch(`${process.env.REACT_APP_BE_URL}/api/account`);
         const jsonData = await response.json();
 
         // console.log(jsonData);

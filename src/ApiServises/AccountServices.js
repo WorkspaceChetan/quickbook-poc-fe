@@ -2,7 +2,7 @@ import axios from "axios";
 
 class AccountServices {
   static getAll = async () => {
-    const url = "http://localhost:5000/api/account";
+    const url = `${process.env.REACT_APP_BE_URL}/api/account`;
     const config = {
       headers: {
         "content-type": "application/json",
@@ -12,7 +12,7 @@ class AccountServices {
   };
 
   static add = async (data) => {
-    const url = "http://localhost:5000/api/account";
+    const url = `${process.env.REACT_APP_BE_URL}/api/account`;
     // console.log("addAccount", data);
     const config = {
       headers: {
@@ -23,7 +23,7 @@ class AccountServices {
   };
 
   static update = async (data) => {
-    const url = "http://localhost:5000/api/account/" + data.id;
+    const url = `${process.env.REACT_APP_BE_URL}/api/account/` + data.id;
     // console.log("UpdateAccount", data);
     const config = {
       headers: {
@@ -35,7 +35,7 @@ class AccountServices {
   };
 
   static getById = async (id) => {
-    const url = `http://localhost:5000/api/account/${id}`;
+    const url = `${process.env.REACT_APP_BE_URL}/api/account/${id}`;
     const config = {
       headers: {
         "content-type": "application/json",
@@ -46,7 +46,7 @@ class AccountServices {
   };
 
   static delete = async (id) => {
-    const url = "http://localhost:5000/api/account/" + id;
+    const url = `${process.env.REACT_APP_BE_URL}/api/account/` + id;
     const config = {
       headers: {
         "content-type": "application/json",

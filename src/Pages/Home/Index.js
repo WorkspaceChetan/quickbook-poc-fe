@@ -19,19 +19,19 @@ export default function MainHome() {
   // };
 
   const handleLogin = () => {
-    window.location.replace("http://localhost:5000/qb/authUri");
+    window.location.replace(`${process.env.REACT_APP_BE_URL}/qb/authUri`);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("tokenid");
-    window.location.replace("http://localhost:3000");
+    window.location.replace(process.env.REACT_APP_FE_URL);
   };
 
   useEffect(() => {
     const tokenid = searchParams.get("tokenid");
     if (tokenid) {
       localStorage.setItem("tokenid", tokenid);
-      window.location.replace("http://localhost:3000");
+      window.location.replace(process.env.REACT_APP_FE_URL);
     } else {
       const tokenid = localStorage.getItem("tokenid");
       if (tokenid && tokenid.length > 0) setIsLoggedIn(true);
@@ -76,6 +76,7 @@ export default function MainHome() {
                         Refresh
                       </Link>
                     </Button> */}
+                    {process.env.REACT_APP_VAR}
                     <Button
                       variant="primary"
                       className="mb-2"
