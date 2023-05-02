@@ -7,6 +7,8 @@ function AccounttModal(props) {
   const isEdit = Boolean(props.product);
   const [Name, setName] = useState("");
   const [AccountType, setAccountType] = useState("");
+  const [Description, setDescription] = useState("");
+  const [AccountAlias, setAccountAlias] = useState("");
 
   useEffect(() => {
     async function getById() {
@@ -18,6 +20,8 @@ function AccounttModal(props) {
         const AcData = JSON.parse(content);
         setName(AcData.Name);
         setAccountType(AcData.AccountType);
+        setDescription(AcData.Description);
+        setAccountAlias(AcData.AccountAlias);
         // console.log("AcData", AcData);
       }
     }
@@ -28,15 +32,19 @@ function AccounttModal(props) {
     if (props.product) {
       setName(props.product.Name);
       setAccountType(props.product.AccountType);
+      setDescription(props.product.Description);
+      setAccountAlias(props.product.AccountAlias);
     } else {
       setName("");
       setAccountType("");
+      setDescription("");
+      setAccountAlias("");
     }
   }, [props.product]);
 
   const handleUpdate = async (e) => {
     const id = props.product.id;
-    const data = { Name, AccountType };
+    const data = { Name, AccountType, Description, AccountAlias };
     const response = await AccountServices.update({
       content: JSON.stringify(data),
       id,
@@ -53,7 +61,13 @@ function AccounttModal(props) {
   };
 
   const handleAdd = async (e) => {
-    const data = { ...props.product, Name, AccountType };
+    const data = {
+      ...props.product,
+      Name,
+      AccountType,
+      Description,
+      AccountAlias,
+    };
     const response = await AccountServices.add({
       content: JSON.stringify(data),
     });
@@ -97,6 +111,24 @@ function AccounttModal(props) {
             placeholder="Enter Account Type"
             value={AccountType}
             onChange={(e) => setAccountType(e.target.value)}
+            required
+          />
+          <br />
+          <Form.Control
+            type="text"
+            name="Description"
+            placeholder="Enter Description"
+            value={Description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+          <br />
+          <Form.Control
+            type="text"
+            name="AccountAlias"
+            placeholder="Enter AccountAlias"
+            value={AccountAlias}
+            onChange={(e) => setAccountAlias(e.target.value)}
             required
           />
         </Modal.Body>

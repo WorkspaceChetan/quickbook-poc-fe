@@ -87,7 +87,9 @@ function VendorTableData() {
             <th>No</th>
             <th>Vendor Name</th>
             <th> Company Name </th>
-            <th>Qb Data</th>
+            <th>Family Name</th>
+            <th>Print On Chek Name</th>
+            <th>QB Data</th>
             <th>Edit</th>
             {/* <th>Delete</th> */}
             <th>Sync</th>
@@ -98,6 +100,7 @@ function VendorTableData() {
             data={product}
             handleOpen={handleOpen}
             deleteusr={deleteusr}
+            fetchData={fetchdata}
           />
         </tbody>
       </Table>

@@ -89,6 +89,8 @@ function AccountTableData() {
             <th>No</th>
             <th>Account Name</th>
             <th>Account Type </th>
+            <th>Description</th>
+            <th> AccountAlias</th>
             <th>QB Data</th>
             <th>Edit</th>
             {/* <th>Delete</th> */}
@@ -100,6 +102,7 @@ function AccountTableData() {
             data={product}
             handleOpen={handleOpen}
             deleteusr={deleteusr}
+            fetchdata={fetchdata}
           />
         </tbody>
       </Table>

@@ -4,10 +4,12 @@ import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import TokenServices from "./../../ApiServises/TokenService";
 import { toast } from "react-toastify";
 
-export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
+export const VendortTableRow = ({ prod, handleOpen, deleteusr, fetchData }) => {
   const content = JSON.parse(prod.content);
   const displayName = content.DisplayName;
   const companyName = content.CompanyName;
+  const familyName = content.FamilyName;
+  const printOncheckName = content.PrintOnCheckName;
   const qbData = prod.qb_data;
   const { id } = prod;
 
@@ -16,6 +18,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
     const resp = await TokenServices.sync("vendor", id, tokenid);
     if (!resp.data.isError) {
       toast.success("Data  Synced Successfully", { autoClose: 3000 });
+      await fetchData();
     } else {
       toast.error(resp.data.message, { autoClose: 3000 });
     }
@@ -26,6 +29,8 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
       <td> {prod.id} </td>
       <td> {displayName} </td>
       <td> {companyName} </td>
+      <td>{familyName}</td>
+      <td>{printOncheckName}</td>
       <td>
         <pre className="max-pre">{qbData}</pre>
       </td>
@@ -54,7 +59,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
   );
 };
 
-const VendorTableRows = ({ data, handleOpen, deleteusr }) => {
+const VendorTableRows = ({ data, handleOpen, deleteusr, fetchData }) => {
   return (
     <>
       {data &&
@@ -65,6 +70,7 @@ const VendorTableRows = ({ data, handleOpen, deleteusr }) => {
               prod={prod}
               handleOpen={handleOpen}
               deleteusr={deleteusr}
+              fetchData={fetchData}
             />
           </Fragment>
         ))}
