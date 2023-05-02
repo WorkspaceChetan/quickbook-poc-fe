@@ -38,7 +38,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
           <FaRegEdit style={{ marginBottom: "5px" }} />
         </Button>
       </td>
-      <td>
+      {/* <td>
         <Button
           variant="danger"
           onClick={() => deleteusr(prod.id)}
@@ -46,7 +46,7 @@ export const VendortTableRow = ({ prod, handleOpen, deleteusr }) => {
         >
           <FaRegTrashAlt style={{ marginBottom: "5px" }} />
         </Button>
-      </td>
+      </td> */}
       <td>
         <Button onClick={syncCb}>Sync</Button>
       </td>
