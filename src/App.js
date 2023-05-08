@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./component/ProtectedRoute";
 import UnauthorizedRoute from "./component/UnauthorizedRoute";
+import Handletoken from "./Pages/handletoken";
 // import { SimpleData } from "./simpleData";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               </UnauthorizedRoute>
             }
           />
+          <Route path="/handletoken" element={<Handletoken />} />
 
           <Route
             path="/account"

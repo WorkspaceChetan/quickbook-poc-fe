@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import MainMenu from "../../Navbar/MainMenu";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -19,7 +20,10 @@ export default function MainHome() {
   // };
 
   const handleLogin = () => {
-    window.location.replace(`${process.env.REACT_APP_BE_URL}/qb/authUri`);
+    const url = encodeURI("http://localhost:3000/handletoken");
+    window.location.replace(
+      `${process.env.REACT_APP_BE_URL}/qb/authUri?cb=${url}`
+    );
   };
 
   const handleLogout = () => {
@@ -46,9 +50,7 @@ export default function MainHome() {
         <Row>
           <Col xs={12} md={6} className="mb-4">
             <Card style={{ width: "18rem" }}>
-              <Card.Header>
-                {`Quick book auth`}
-              </Card.Header>
+              <Card.Header>{`Quick book auth`}</Card.Header>
               <Card.Body
                 style={{
                   height: "200px",
