@@ -4,12 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Index";
 import AccountType from "./Pages/AccountType";
 import VendorType from "./Pages/VendorType";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./component/ProtectedRoute";
 import UnauthorizedRoute from "./component/UnauthorizedRoute";
 import Handletoken from "./Pages/handletoken";
-// import { SimpleData } from "./simpleData";
 
 function App() {
   return (

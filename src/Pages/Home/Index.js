@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import MainMenu from "../../Navbar/MainMenu";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -45,7 +44,6 @@ export default function MainHome() {
   return (
     <div>
       <MainMenu />
-
       <Container className="d-flex justify-content-center my-4">
         <Row>
           <Col xs={12} md={6} className="mb-4">
